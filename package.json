@@ -7,7 +7,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev:server": "nodemon ./server.js",
+    "dev:server": "nodemon --experimental-specifier-resolution=node server",
     "build": "webpack"
   },
   "dependencies": {
