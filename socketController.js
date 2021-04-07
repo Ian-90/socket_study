@@ -1,12 +1,20 @@
+import events from "./event";
+
 const socketController = (socket) => {
-  socket.on("setNickname", ({ nickname }) => {
+  const broadcast = (event, data) => socket.broadcast.emit(event, data);
+
+  socket.on(events.setNickname, ({ nickname }) => {
+    broadcast(events.newUser, { nickname });
     socket.nickname = nickname;
-    console.log(nickname);
   });
 
-  // socket.on("setNickname", ({ nickname }) => {
-  //   socket.nickname = nickname;
-  // });
+  socket.on(events.sendMsg, ({ message }) => {
+    broadcast(events.newMsg, { message, nickname: socket.nickname });
+  });
+
+  socket.on(events.disconnect, () => {
+    broadcast(events.disconnected, { nickname: socket.nickname });
+  });
 };
 
 export default socketController;
