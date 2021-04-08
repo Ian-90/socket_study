@@ -4,7 +4,9 @@
 @import "reset";
 @import "notifications";
 @import "chat";
- 
+@import "game";
+@import "board";
+
 * {
   box-sizing: border-box;
 }
@@ -32,7 +34,7 @@ body {
   }
   &.loggedOut {
     .loginBox {
-      display: block;
+      display: flex;
     }
   }
   &.loggedIn {
